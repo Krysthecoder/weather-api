@@ -37,7 +37,7 @@ function FutureWeather() {
   }
 
   return (
-    <div className="w-90 bg-neutral-800 m-4 text-cyan-500">
+    <div className="w-90 bg-neutral-800 p-4 text-cyan-500">
       {weatherInfo ? (
         <>
           <h1>Future predictions:</h1>

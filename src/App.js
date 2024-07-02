@@ -1,6 +1,7 @@
 
 import "./App.css";
 import CurrentWeather from "./components/CurrentWeather";
+import Footer from "./components/Footer";
 import FutureWeather from "./components/FutureWeather";
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
       <CurrentWeather />
 
       <FutureWeather />
+
+      <Footer />
     </div>
   );
 

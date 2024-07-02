@@ -47,9 +47,9 @@ const CurrentWeather = () => {
 
   console.log(weather);
   return (
-    <div className="test">
+    <>
       {weather ? (
-        <div className="flex flex-col text-center items-center bg-slate-600 text-slate-400" >
+        <div className="flex flex-col text-center items-center bg-slate-600 text-slate-400 p-4" >
           <h2 className="font-bold text-center">
             {weather.timezone}
           </h2>
@@ -70,7 +70,7 @@ const CurrentWeather = () => {
       ) : (
         <p>loading ...</p>
       )}
-    </div>
+    </>
   );
 };
 
