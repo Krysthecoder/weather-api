@@ -1,25 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { fetchWeatherApi } from "../apiData/fetchWeatherApi";
+import { fetchWeatherApi } from "../../apiData/fetchWeatherApi";
+import { getCurrentMonth } from "../../Utils";
 
 const CurrentWeather = () => {
   const [location, setLocation] = useState(null); // Current location setter
   const [weather, setWeather] = useState(null); // Current weather information setter
-  const date = new Date();
-  const months = {
-    1: "January",
-    2: "February",
-    3: "March",
-    4: "April",
-    5: "May",
-    6: "June",
-    7: "July",
-    8: "August",
-    9: "September",
-    10: "October",
-    11: "November",
-    12: "December"
-  };
+  
+  
 
   useEffect(() => {
     // will wait for the page to load to trigger a callback handleLocation function
@@ -64,7 +52,8 @@ const CurrentWeather = () => {
             Feels like +{weather.current.feels_like}&deg;C
           </p>
           <p>
-            {months[date.getMonth() + 1]} {date.getDate()}
+            {getCurrentMonth}
+            {/* {months[date.getMonth() + 1]} {date.getDate()} */}
           </p>
         </div>
       ) : (
