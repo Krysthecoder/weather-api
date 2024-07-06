@@ -4,16 +4,18 @@ import {
   fetchDataByGeoLocation
   //fetchWeatherApi,
 } from '../Utils';
+import Spinner from './Spinner';
 
 function FutureWeather() {
   const [weatherInfo, setWeatherInfo] = useState({});
   //const [location, setLocation] = useState({ latitude: null, longitude: null });
 
+  const test = async () => {
+    const fetchedData = await fetchDataByGeoLocation();
+    setWeatherInfo(fetchedData);
+  };
+
   useEffect(() => {
-    const test = async () => {
-      const fetchedData = await fetchDataByGeoLocation();
-      setWeatherInfo(fetchedData);
-    };
     test();
   }, []);
 
@@ -40,16 +42,19 @@ function FutureWeather() {
   // },[location])
 
   if (weatherInfo?.daily?.length === 0) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   return (
     <div className="w-90 bg-neutral-800 p-4 text-cyan-500">
       <h1>Future predictions:</h1>
       <div className="flex text-center items-center justify-around flex-wrap">
-        {weatherInfo?.daily?.map((weatherObj, index) => {
+        {weatherInfo?.daily?.map((weatherObj, i) => {
           return (
-            <div className="flex text-center items-center flex-col w-20  m-4">
+            <div
+              key={i}
+              className="flex text-center items-center flex-col w-20  m-4"
+            >
               <img
                 className="w-20 h-20"
                 src={`https://openweathermap.org/img/wn/${weatherObj.weather[0].icon}@2x.png`}
