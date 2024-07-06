@@ -1,4 +1,4 @@
-import { months } from "./utilsData";
+import { months } from './utilsData';
 
 export const getCurrentMonth = () => {
   const date = new Date();
@@ -14,18 +14,33 @@ export function dateUnixToLocaleConverter(unixVal) {
 export async function fetchWeatherApi(latitude, longitude) {
   const key = process.env.REACT_APP_WEATHER_API_KEY;
   const apiUrl = `${process.env.REACT_APP_WEATHER_API_URL}lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`;
-  const fetchedData = await fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => data)
-    .catch((error) => console.log(error));
-  return fetchedData;
+  const fetchedData = await fetch(apiUrl);
+  const fetchedDataResponse = fetchedData.json();
+  return fetchedDataResponse;
 }
 
+const getCurrentLocation = () => {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          });
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    } else {
+      reject(new Error('unable to get current location.'));
+    }
+  });
+};
+
 export async function fetchDataByGeoLocation() {
-  navigator.geolocation.getCurrentPosition(
-    ({ coords: { latitude, longitude } }) =>
-     fetchWeatherApi(latitude, longitude),
-    () => console.log("unable to get current location")
-  );
-  console.log(navigator)
+  const { latitude, longitude } = await getCurrentLocation();
+  const data = await fetchWeatherApi(latitude, longitude);
+  return data;
 }
