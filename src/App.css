@@ -10,33 +10,30 @@ html,body,#root{
 }
 
 /* video background rules */
-#root{
+#root {
   display: flex;
   flex-direction: column;
 }
-
-.app-wrapper{
-
+.app-wrapper {
+  display: flex;
+  min-width: 100%;
+  border: 2ppx solid red;
 }
-
-.video-bg{
-  position: absolute;
-  z-index: -1;
+.video-bg {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   min-width: 100% !important;
-  object-fit: fill;
+  min-height: 100% !important;
+  object-fit: cover;
 }
-
-.content{
+.content {
   position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+  height: 100vh;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-

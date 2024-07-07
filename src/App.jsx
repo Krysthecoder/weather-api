@@ -1,6 +1,7 @@
 import FutureWeather from './components/FutureWeather';
 import Footer from './components/Footer';
 import bgVideo from './assets/bg.mp4';
+import './App.css';
 
 function App() {
   return (
