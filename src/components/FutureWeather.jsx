@@ -46,14 +46,14 @@ function FutureWeather() {
   }
 
   return (
-    <div className="w-90 bg-neutral-800 p-4 text-cyan-500">
-      <h1>Future predictions:</h1>
-      <div className="flex text-center items-center justify-around flex-wrap">
+    <div className="w-full bg-neutral-800 text-cyan-500 flex justify-center flex-col items-center">
+      <h1 className="uppercase">Future predictions:</h1>
+      <div className="flex items-center justify-evenly flex-wrap">
         {weatherInfo?.daily?.map((weatherObj, i) => {
           return (
             <div
               key={i}
-              className="flex text-center items-center flex-col w-20  m-4"
+              className="flex text-center items-center flex-col w-30  m-2"
             >
               <img
                 className="w-20 h-20"
@@ -61,8 +61,12 @@ function FutureWeather() {
                 alt="weather icon"
               />
               <p>{weatherObj.temp.day}&deg;C</p>
-              <p>Feels like: {weatherObj.feels_like.day}&deg;C.</p>
-              <p>{dateUnixToLocaleConverter(weatherObj.dt)}</p>
+              <p className="text-slate-300 font-light text-sm">
+                Feels like: {weatherObj.feels_like.day}&deg;C.
+              </p>
+              <p className="text-red-400 font-light text-sm">
+                {dateUnixToLocaleConverter(weatherObj.dt)}
+              </p>
             </div>
           );
         })}
